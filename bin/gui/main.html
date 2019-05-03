@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TERA Toolbox</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" href="css/main.css">
+	<script>window.$ = window.jQuery = require('./js/jquery-3.2.1.min.js')</script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+	<script src="main.js"></script>
+</head>
+<body>
+	<!-- Title Bar -->
+	<div id="title-bar" class="title-bar">
+		<img src="icon.ico" id="title-icon">
+		<div id="title">TERA Toolbox</div>
+		<div id="title-status">Not running</div>
+		<button id="minimize-btn" class="nodrag">-</button>
+		<button id="close-btn" class="nodrag">&times;</button>
+	</div>
+	
+	<!-- Navigation -->
+	<nav>
+		<ul>
+			<li class="tab-link nodrag" helptext="Proxy Status" id="startproxy"><a class="fas fa-power-off"></a></li>
+			<li class="tab-link nodrag current" helptext="Log" tabname="log"><a class="fas fa-terminal"></a></li>
+			<li class="tab-link nodrag" helptext="Mods" tabname="mods"><a class="fas fa-dice-d6"></a></li>
+			<li class="tab-link nodrag" helptext="Get Mods" tabname="getmods"><a class="fas fa-cloud-download-alt"></a></li>
+			<li class="tab-link nodrag" helptext="Settings" tabname="settings"><a class="fas fa-cogs"></a></li>
+			<li class="tab-link nodrag" helptext="Get Help" tabname="help" tabclickonly="true"><a class="fas fa-question"></a></li>
+			<li class="tab-link nodrag" helptext="Mods Folder" tabname="modsfolder" tabclickonly="true"><a class="fas fa-folder-open"></a></li>
+			<li class="tab-link nodrag" helptext="Credits" tabname="credits"><a class="fas fa-hand-holding-heart"></a></li>
+		</ul>
+		<p class="nodrag" id="infotext"></p>
+	</nav>
+
+	<div id="container" class="nodrag">
+		<div id="log">
+			<textarea id="log-data" disabled readonly></textarea>
+			<button id="clear-log-btn" class="nodrag">&times;</button>
+		</div>
+
+		<div id="mods">
+			<div><ul></ul></div>
+		</div>
+
+		<div id="getmods">
+			<div>
+				<div class="center">
+					Filter:&nbsp;<input type="text" id="mod-filter" placeholder="Mod name">
+					<label><input type="checkbox" id="mod-filter-net" checked>&nbsp;Network / Proxy Mods</label>
+					<label><input type="checkbox" id="mod-filter-client" checked>&nbsp;Client / UI Mods</label>
+				</div>
+				<ul></ul>
+			</div>
+		</div>
+
+		<div id="settings">
+			<div>
+				<table>
+					<tr>
+						<td><a>Theme</a></td>
+						<td id="themes"></td>
+					</tr>
+					<tr>
+						<td><a>Autostart when opening TERA Toolbox</a></td>
+						<td><input id="autostart" gui="true" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Show detailed update log</a></td>
+						<td><input id="updatelog" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Show time in log</a></td>
+						<td><input id="logtimes" gui="true" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Disable mod updates</a></td>
+						<td><input id="noupdate" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Disable self-updates</a></td>
+						<td><input id="noselfupdate" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Enable Developer Mode</a></td>
+						<td><input id="devmode" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Hide tags in server list</a></td>
+						<td><input id="noslstags" type="checkbox"></td>
+					</tr>
+					<tr>
+						<td><a>Minimize to system tray</a></td>
+						<td><input id="minimizetotray" gui="true" type="checkbox"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="credits">
+			<div>
+				<div>
+					<p>Thanks to</p>
+					<p>SaltyMonkey: Proxy Setup</p>
+					<p>Mathicha & Pentagon: Core GUI stuff</p>
+					<p>Meishu / Pinkie Pie: Original Proxy Core</p>
+					<p>All Proxy Mod Developers</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="loading">
+			<div>
+				<i class="fas fa-sync-alt spin"></i>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Box -->
+	<div id="modalbox">
+			<div>
+			<button id="modalbox-close">&times;</button>
+			<div id="modalbox-body"></div>
+		</div>
+	</div>
+</body>
+</html>
