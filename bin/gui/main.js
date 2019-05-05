@@ -101,7 +101,7 @@ jQuery(($) => {
 
 	$('#settings tr').click((e) => {
 		let target = e.target;
-		if(target.getAttribute('type') == 'checkbox') return true;
+		if(target.getAttribute('type') == 'checkbox' || target.getAttribute('type') == 'text') return true;
 
 		while(target.nodeName.toLowerCase() != 'tr') target = target.parentElement;
 		let checkBox = $($(target).children('td')[1]).children('input[type="checkbox"]')[0];
@@ -113,9 +113,14 @@ jQuery(($) => {
 
 	$('#settings input[type="checkbox"]').change((e) => {
 		if(e.target.getAttribute('gui')) {
-			let Override = {};
-        	Override[e.target.id] = e.target.checked;
-        	Settings.gui = Object.assign(Settings.gui, Override);
+			if(e.target.id == 'mascot') {
+        		Settings.gui = Object.assign(Settings.gui, { mascot: { enabled: e.target.checked, url: $('#mascot_url').val() } });
+        		updateSettings();
+			} else {
+				let Override = {};
+        		Override[e.target.id] = e.target.checked;
+        		Settings.gui = Object.assign(Settings.gui, Override);
+        	}
 		} else {
 			let Override = {};
         	Override[e.target.id] = e.target.checked;
@@ -125,39 +130,60 @@ jQuery(($) => {
 		ipcRenderer.send('set config', Settings);
 	});
 
+	$('#mascot_url').change((e) => {
+		Settings.gui = Object.assign(Settings.gui, { mascot: { enabled: $('#mascot')[0].checked, url: e.target.value } });
+		updateSettings();
+		ipcRenderer.send('set config', Settings);
+	});
+
+	$('#mascot-image').on('error', (e) => {
+		Settings.gui = Object.assign(Settings.gui, { mascot: { enabled: $('#mascot')[0].checked, url: '' } });
+		updateSettings();
+		ipcRenderer.send('set config', Settings);
+	});
+
 	function updateSettings(first = false) {
+		let mascotEnabled = Settings.gui ? (Settings.gui.mascot ? (Settings.gui.mascot.enabled ? Settings.gui.mascot.enabled : false) : false) : false;
+		let mascotUrl = Settings.gui ? (Settings.gui.mascot ? (Settings.gui.mascot.url ? Settings.gui.mascot.url : '') : '') : '';
 		$.each($('#settings input[type="checkbox"]'), (i, e) => {
 			if(e.getAttribute('gui')) {
-				$('#' + e.id).prop('checked', Settings.gui[e.id]);
+				if(e.id == 'mascot') {
+					$('#' + e.id).prop('checked', mascotEnabled);
+				} else {
+					$('#' + e.id).prop('checked', Settings.gui[e.id]);
+				}
 			} else {
 				$('#' + e.id).prop('checked', Settings[e.id]);
 			}
+		});
 
+		$('#mascot_url').val(mascotUrl);
+		$('#mascot-image').css('display', mascotEnabled ? 'block' : 'none');
+		$('#mascot-image')[0].src = mascotUrl != '' ? mascotUrl : 'mascot_default.png';
 
-			let files = fs.readdirSync('./bin/gui/css/themes');
+		let files = fs.readdirSync('./bin/gui/css/themes');
 
-			Themes = [];
-			$('#themes').empty();
-			files.forEach((e) => {
-				let extIndex = e.indexOf('.css');
-				if(extIndex !== -1) {
-					let themeName = e.substring(0, extIndex);
-					Themes.push(themeName);
-					$('#themes').append('<div id="theme_'+themeName+'" class="theme" style="background-color: '+themeName+';"></div>');
-				}
-			});
-
-			if(first) {
-				$('head').append(`<link rel="stylesheet" href="css/themes/${Themes.indexOf(Settings.gui.theme) < 0 ? Themes[0] : Settings.gui.theme}.css">`);
+		Themes = [];
+		$('#themes').empty();
+		files.forEach((e) => {
+			let extIndex = e.indexOf('.css');
+			if(extIndex !== -1) {
+				let themeName = e.substring(0, extIndex);
+				Themes.push(themeName);
+				$('#themes').append('<div id="theme_'+themeName+'" class="theme" style="background-color: '+themeName.replace('HEX_', '#')+';"></div>');
 			}
+		});
 
-			Themes.forEach(theme => {
-				$(`#theme_${theme}`).click(() => {
-					$('head>link').filter('[rel="stylesheet"]:last').remove();
-					$('head').append(`<link rel="stylesheet" href="css/themes/${theme}.css">`);
-        			Settings.gui = Object.assign(Settings.gui, {'theme': theme});
-        			ipcRenderer.send('set config', Settings);
-				});
+		if(first) {
+			$('head').append(`<link rel="stylesheet" href="css/themes/${Themes.indexOf(Settings.gui.theme) < 0 ? Themes[0] : Settings.gui.theme}.css">`);
+		}
+
+		Themes.forEach(theme => {
+			$(`#theme_${theme}`).click(() => {
+				$('head>link').filter('[rel="stylesheet"]:last').remove();
+				$('head').append(`<link rel="stylesheet" href="css/themes/${theme}.css">`);
+        		Settings.gui = Object.assign(Settings.gui, {'theme': theme});
+        		ipcRenderer.send('set config', Settings);
 			});
 		});
 	}

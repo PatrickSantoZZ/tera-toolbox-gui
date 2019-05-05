@@ -1,0 +1,110 @@
+/* pink */
+ul .tab-link {
+	background-color: #f080ae;
+	color: #292F33;
+}
+
+ul .tab-link:hover {
+	background-color: #F9B8D2;
+}
+
+.tab-link.current {
+	background: #F9B8D2;
+}
+
+body {
+	background: rgb(245, 217, 229);
+	background: -webkit-linear-gradient(45deg, rgba(245, 217, 229, 1) 0%, rgba(226, 138, 175, 1) 50%, rgba(223, 103, 153, 1) 51%, rgba(246, 182, 209, 1) 100%);
+	color: #292F33;
+}
+
+#close-btn, #minimize-btn {
+	color: #292F33;
+}
+
+#close-btn:hover, #minimize-btn:hover {
+	color: #E81C4F;
+}
+
+#log-data {
+	background-color: #F9B8D2;
+	color: #292F33;
+}
+
+#clear-log-btn {
+	color: #292F33;
+}
+
+#clear-log-btn:hover {
+	color: #E81C4F;
+}
+
+::-webkit-scrollbar-track {
+	background: #f080ae;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #F9B8D2;
+}
+
+#mods > div > ul > li:hover, #getmods > div > ul > li:hover {
+	background: #f080ae;
+}
+
+#mods > div > ul > li, #getmods > div > ul > li {
+	background: #F9B8D2;
+	color: #292F33;
+}
+
+#getmods input[type='text'] {
+	border-color: #F9B8D2;
+	background: #292F33;
+	color: #F9B8D2;
+}
+
+#settings td {
+	background-color: #F9B8D2;
+	color: #292F33;
+}
+
+#modalbox > div {
+	background: #F9B8D2;
+	border: 1px solid #888;
+	color: #292F33;
+}
+
+#modalbox-body {
+	background: #F9B8D2;
+}
+
+#modalbox-close {
+	color: #292F33;
+}
+
+#modalbox-close:hover {
+	color: #E81C4F;
+}
+
+#modalbox button:not(#modalbox-close) {
+	background-color: #F9B8D2;
+	color: white;
+	border-color: #FFFFFF;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+
+#modalbox button:not(#modalbox-close):hover {
+    border-color: #dddddd;
+}
+
+.warning {
+	color: #CC0000;
+}
+
+#startproxy {
+	background: #F9B8D2;
+}
+
+#startproxy:hover {
+	background: #FFD2E4;
+}

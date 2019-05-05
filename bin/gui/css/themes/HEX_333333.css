@@ -1,0 +1,110 @@
+/* gray */
+ul .tab-link {
+	background-color: #292F33;
+	color: #BBB;
+}
+
+ul .tab-link:hover {
+	background-color: #393C40;
+}
+
+.tab-link.current {
+	background: #222426;
+}
+
+body {
+	background: #121212;
+	background: -webkit-linear-gradient(45deg, #121212 0%, #1a1a1a 50%, #171717 51%, #242424 100%);
+	color: #BBB;
+}
+
+#close-btn, #minimize-btn {
+	color: #BBB;
+}
+
+#close-btn:hover, #minimize-btn:hover {
+	color: #E81C4F;
+}
+
+#log-data {
+	background-color: #222426;
+	color: #BBB;
+}
+
+#clear-log-btn {
+	color: #BBB;
+}
+
+#clear-log-btn:hover {
+	color: #E81C4F;
+}
+
+::-webkit-scrollbar-track {
+	background: #222426;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #393C40;
+}
+
+#mods > div > ul > li:hover, #getmods > div > ul > li:hover {
+	background: #292F33;
+}
+
+#mods > div > ul > li, #getmods > div > ul > li {
+	background: #222426;
+	color: #BBB;
+}
+
+#getmods input[type='text'] {
+	border-color: #393C40;
+	background: #222426;
+	color: #BBB;
+}
+
+#settings td {
+	background-color: #222426;
+	color: #BBB;
+}
+
+#modalbox > div {
+	background: #393C40;
+	border: 1px solid #888;
+	color: #BBB;
+}
+
+#modalbox-body {
+	background: #393C40;
+}
+
+#modalbox-close {
+	color: #BBB;
+}
+
+#modalbox-close:hover {
+	color: #E81C4F;
+}
+
+#modalbox button:not(#modalbox-close) {
+	background-color: #393C40;
+	color: white;
+	border-color: #999999;
+	-webkit-transition-duration: 0.4s;
+	transition-duration: 0.4s;
+}
+
+#modalbox button:not(#modalbox-close):hover {
+    border-color: #dddddd;
+}
+
+.warning {
+	color: #CC0000;
+}
+
+#startproxy {
+	background: #292F33;
+}
+
+#startproxy:hover {
+	background: #393C40;
+}

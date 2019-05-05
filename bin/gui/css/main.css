@@ -423,3 +423,32 @@ nav {
 #modalbox-close:focus {
 	outline: 0;
 }
+
+#modalbox button:not(#modalbox-close) {
+	display: table;
+	margin: 0 auto;
+	padding: 5px;
+	padding-left: 4px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 20px;
+	margin-top: 10px;
+	cursor: pointer;
+	border: 3px solid;
+	border-radius: 7px;
+	outline: 0;
+}
+
+/************
+ ** MASCOT **
+ ************/
+
+#mascot-image {
+	position: absolute;
+	display: none;
+	opacity: 0.4;
+	max-height: calc(100% - 35px);
+	bottom: 0;
+	right: 0;
+	pointer-events: none;
+}

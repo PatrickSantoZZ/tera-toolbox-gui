@@ -5,7 +5,6 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script>window.$ = window.jQuery = require('./js/jquery-3.2.1.min.js')</script>
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 	<script src="main.js"></script>
 </head>
 <body>
@@ -93,6 +92,10 @@
 						<td><a>Minimize to system tray</a></td>
 						<td><input id="minimizetotray" gui="true" type="checkbox"></td>
 					</tr>
+					<tr>
+						<td><a>Mascot URL:</a>&nbsp;<input id="mascot_url" type="text" placeholder="mascot_default.png"></td>
+						<td><input id="mascot" gui="true" type="checkbox"></td>
+					</tr>
 				</table>
 			</div>
 		</div>
@@ -123,5 +126,8 @@
 			<div id="modalbox-body"></div>
 		</div>
 	</div>
+
+	<!-- Mascot -->
+	<img src="mascot_default.png" id="mascot-image" draggable="false">
 </body>
 </html>
